@@ -243,6 +243,13 @@ body{
 .thanks p{color:var(--ink-soft);opacity:1;margin:.4rem auto 0}
 .rsvp .small a{color:var(--ivory);font-weight:700}
 
+.gears{width:6.5rem;height:auto;margin:2.4rem auto .6rem;display:block}
+.gears .g1{animation:spin 14s linear infinite}
+.gears .g2{animation:spin 9.333s linear infinite reverse}
+@keyframes spin{to{transform:rotate(360deg)}}
+.note{max-width:34ch;margin:.8rem auto 0;font-size:1.12rem;line-height:1.7;color:var(--ink-soft)}
+@media (prefers-reduced-motion:reduce){.gears .g1,.gears .g2{animation:none}}
+
 /* closing */
 .closing .ar{font-family:var(--callig);font-size:clamp(2rem,9vw,2.8rem);color:var(--maroon);line-height:1.5}
 .closing .sig{font-size:clamp(1.9rem,8vw,2.6rem);font-weight:500;margin-top:6px}
@@ -496,6 +503,13 @@ body.locked{overflow:hidden}
     <svg class="star8 r" style="width:34px;height:34px;margin-bottom:18px" aria-hidden="true"><use href="#star"/></svg>
     <p class="ar r d1" lang="ar">جزاكم الله خيراً</p>
     <p class="intro r d2" style="margin-top:8px">Your prayers and presence are the most precious gifts we could receive.</p>
+    <svg class="gears r" viewBox="0 0 130 80" aria-hidden="true">
+      <g transform="translate(46 42)"><g class="g1"><path d="M26.0,0.0 L32.7,4.3 L31.9,8.5 L24.0,9.9 L22.5,13.0 L26.2,20.1 L23.3,23.3 L15.8,20.6 L13.0,22.5 L12.6,30.5 L8.5,31.9 L3.4,25.8 L0.0,26.0 L-4.3,32.7 L-8.5,31.9 L-9.9,24.0 L-13.0,22.5 L-20.1,26.2 L-23.3,23.3 L-20.6,15.8 L-22.5,13.0 L-30.5,12.6 L-31.9,8.5 L-25.8,3.4 L-26.0,0.0 L-32.7,-4.3 L-31.9,-8.5 L-24.0,-9.9 L-22.5,-13.0 L-26.2,-20.1 L-23.3,-23.3 L-15.8,-20.6 L-13.0,-22.5 L-12.6,-30.5 L-8.5,-31.9 L-3.4,-25.8 L-0.0,-26.0 L4.3,-32.7 L8.5,-31.9 L9.9,-24.0 L13.0,-22.5 L20.1,-26.2 L23.3,-23.3 L20.6,-15.8 L22.5,-13.0 L30.5,-12.6 L31.9,-8.5 L25.8,-3.4Z" fill="#6E1423"/><circle r="13" fill="#F6EFDF"/><circle r="5" fill="#6E1423"/></g></g>
+      <g transform="translate(96.5 33)"><g class="g2"><path d="M17.0,0.0 L23.5,4.7 L22.2,9.2 L14.1,9.4 L12.0,12.0 L13.3,20.0 L9.2,22.2 L3.3,16.7 L0.0,17.0 L-4.7,23.5 L-9.2,22.2 L-9.4,14.1 L-12.0,12.0 L-20.0,13.3 L-22.2,9.2 L-16.7,3.3 L-17.0,0.0 L-23.5,-4.7 L-22.2,-9.2 L-14.1,-9.4 L-12.0,-12.0 L-13.3,-20.0 L-9.2,-22.2 L-3.3,-16.7 L-0.0,-17.0 L4.7,-23.5 L9.2,-22.2 L9.4,-14.1 L12.0,-12.0 L20.0,-13.3 L22.2,-9.2 L16.7,-3.3Z" fill="#15110F"/><circle r="8" fill="#F6EFDF"/><circle r="3.2" fill="#15110F"/></g></g>
+    </svg>
+    <p class="caps r" style="color:var(--maroon)">A note from the two of us</p>
+    <p class="note r d1">As two mechanical engineers, we've learned that the strongest assemblies are made of parts that fit together just right. After careful design and a few iterations, we're finally ready to put ours together.</p>
+    <p class="note r d2">But no assembly is complete without its most important components: the people who supported us along the way. Please come and be part of the final build on 11 December. You're the one part we simply can't do without.</p>
     <svg class="divider r d3" aria-hidden="true"><use href="#divider"/></svg>
     <p class="caps r d3" style="color:var(--ink-soft)">With love</p>
     <p class="sig r d4">Akib &amp; Mehzabin</p>
