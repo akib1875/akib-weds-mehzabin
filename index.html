@@ -209,6 +209,39 @@ body{
 .rsvp-btn:hover{transform:translateY(-3px)}
 .rsvp .small{font-size:.9rem;opacity:.85;margin-top:18px}
 
+/* RSVP form */
+.rsvp-form{width:min(92vw,30rem);margin-top:1.8rem;background:var(--ivory);color:var(--black);text-align:left;
+  padding:3.4rem clamp(18px,5vw,2.2rem) 2rem;border-radius:999px 999px 6px 6px/7rem 7rem 6px 6px;position:relative;
+  box-shadow:0 0 0 2px var(--maroon-d),0 0 0 3px var(--ivory),0 24px 50px -16px rgba(0,0,0,.6)}
+.form-star{position:absolute;top:1.3rem;left:50%;transform:translateX(-50%);width:1.4rem;height:1.4rem}
+.fld{display:block;border:0;margin:0 0 1.1rem;padding:0;min-width:0}
+.fld>span{display:block;font-weight:700;font-size:.95rem;margin-bottom:.35rem;color:var(--maroon-d)}
+.fld em{font-style:normal;font-weight:500;color:var(--ink-soft)}
+.fld input[type=text],.fld input[type=tel],.fld select{
+  width:100%;font:inherit;font-size:1.05rem;font-weight:600;color:var(--black);background:var(--white);
+  border:1.5px solid var(--black);border-radius:4px;padding:.6rem .75rem;min-height:2.8rem;appearance:none;-webkit-appearance:none}
+.fld select{background:var(--white) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%236E1423' stroke-width='2'/%3E%3C/svg%3E") right .9rem center no-repeat;padding-right:2.4rem}
+.fld input:focus,.fld select:focus{outline:2px solid var(--maroon);outline-offset:1px}
+.fld .bad{border-color:#B3261E;background:#FFF5F4}
+.chips{display:flex;flex-wrap:wrap;gap:.5rem}
+.chips label{cursor:pointer}
+.chips input{position:absolute;opacity:0;pointer-events:none}
+.chips b{display:inline-block;font-weight:600;font-size:.95rem;padding:.5rem .9rem;border:1.5px solid var(--black);border-radius:999px;background:var(--white);transition:background .2s,color .2s}
+.chips input:checked+b{background:var(--maroon);border-color:var(--maroon);color:var(--ivory)}
+.chips input:focus-visible+b{outline:2px solid var(--maroon);outline-offset:2px}
+.form-err{color:#B3261E;font-weight:700;font-size:.95rem;margin:-.3rem 0 .8rem}
+.send{width:100%;font:inherit;font-weight:700;font-size:1rem;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;
+  color:var(--ivory);background:var(--maroon);border:0;border-radius:4px;padding:1rem;margin-top:.4rem;
+  box-shadow:inset 0 0 0 3px var(--maroon),inset 0 0 0 4px rgba(246,239,223,.5)}
+.send:disabled{opacity:.6;cursor:wait}
+.thanks{width:min(92vw,30rem);margin-top:1.8rem;background:var(--ivory);color:var(--black);padding:2.6rem 1.6rem 2rem;
+  border-radius:999px 999px 6px 6px/7rem 7rem 6px 6px;box-shadow:0 0 0 2px var(--maroon-d),0 0 0 3px var(--ivory)}
+.thanks svg{width:1.6rem;height:1.6rem}
+.thanks .ar{font-family:var(--callig);font-size:1.8rem;color:var(--maroon);opacity:1;margin:0}
+.thanks h3{font-weight:500;font-size:1.7rem;line-height:1.2;margin:.3rem 0}
+.thanks p{color:var(--ink-soft);opacity:1;margin:.4rem auto 0}
+.rsvp .small a{color:var(--ivory);font-weight:700}
+
 /* closing */
 .closing .ar{font-family:var(--callig);font-size:clamp(2rem,9vw,2.8rem);color:var(--maroon);line-height:1.5}
 .closing .sig{font-size:clamp(1.9rem,8vw,2.6rem);font-weight:500;margin-top:6px}
@@ -424,8 +457,37 @@ body.locked{overflow:hidden}
     <span class="ar r" lang="ar">أهلاً وسهلاً</span>
     <h2 class="r d1">Will you join us?</h2>
     <p class="r d2">Your presence would make our day complete. Kindly let us know if you'll be attending.</p>
-    <a class="rsvp-btn r d3" id="rsvpBtn" href="#" target="_blank" rel="noopener">Accept the invitation</a>
-    <p class="small r d4">Opens a short form — takes less than a minute.</p>
+    <form class="rsvp-form r d3" id="rsvpForm" action="https://docs.google.com/forms/d/e/1FAIpQLSejgslXa3zFvCZbcvXmn18dtqYYpMwsA-91GnLgHdtMRgw1uw/formResponse" method="POST" target="rsvpSink" novalidate>
+      <svg class="form-star" aria-hidden="true"><use href="#star"/></svg>
+      <label class="fld"><span>Your full name</span>
+        <input name="entry.790002394" type="text" autocomplete="name" required></label>
+      <label class="fld"><span>Phone number <em>(WhatsApp preferred)</em></span>
+        <input name="entry.359140589" type="tel" inputmode="tel" autocomplete="tel" required></label>
+      <label class="fld"><span>Total guests attending <em>(including you)</em></span>
+        <select name="entry.157018614" id="guestCount" required>
+          <option value="" disabled selected>Select</option>
+          <option>1 (just me)</option><option>2</option><option>3</option><option>4</option>
+          <option>5</option><option>6</option><option>7</option><option>8 or more</option>
+        </select></label>
+      <fieldset class="fld"><span>Who is coming with you?</span>
+        <div class="chips" id="chips">
+          <label><input type="checkbox" name="entry.1979038408" value="Coming alone"><b>Coming alone</b></label>
+          <label><input type="checkbox" name="entry.1979038408" value="Wife / Husband"><b>Wife / Husband</b></label>
+          <label><input type="checkbox" name="entry.1979038408" value="Children"><b>Children</b></label>
+          <label><input type="checkbox" name="entry.1979038408" value="Parents"><b>Parents</b></label>
+          <label><input type="checkbox" name="entry.1979038408" value="Other family members"><b>Other family</b></label>
+        </div></fieldset>
+      <p class="form-err" id="formErr" role="alert" hidden></p>
+      <button class="send" type="submit" id="sendBtn">Accept the invitation</button>
+    </form>
+    <iframe name="rsvpSink" id="rsvpSink" title="RSVP" hidden></iframe>
+    <div class="thanks" id="thanks" hidden tabindex="-1">
+      <svg aria-hidden="true"><use href="#star"/></svg>
+      <p class="ar" lang="ar">جزاكم الله خيراً</p>
+      <h3>Thank you, <span id="thanksName"></span>!</h3>
+      <p>Your RSVP has been received. We can't wait to celebrate with you.</p>
+    </div>
+    <p class="small r d4">Prefer Google Forms? <a href="https://docs.google.com/forms/d/e/1FAIpQLSejgslXa3zFvCZbcvXmn18dtqYYpMwsA-91GnLgHdtMRgw1uw/viewform" target="_blank" rel="noopener">Open it here</a></p>
   </section>
 
   <!-- 7 · Closing -->
@@ -442,7 +504,6 @@ body.locked{overflow:hidden}
 
 <script>
 /* ===== Edit these ===== */
-const RSVP_FORM_URL = "";                       // paste your Google Form link here
 const WEDDING_START = "2026-12-11T12:00:00+06:00"; // Bangladesh time
 const TIME_TEXT     = "12:00 PM · Friday";                       // e.g. "From 7:00 PM onwards"
 /* ====================== */
@@ -451,9 +512,26 @@ const TIME_TEXT     = "12:00 PM · Friday";                       // e.g. "From 
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   // RSVP link
-  const btn = document.getElementById('rsvpBtn');
-  if (RSVP_FORM_URL) btn.href = RSVP_FORM_URL;
-  else btn.addEventListener('click', e => { e.preventDefault(); alert('The RSVP form will be available soon.'); });
+  const form=document.getElementById('rsvpForm'), err=document.getElementById('formErr'), sink=document.getElementById('rsvpSink');
+  const boxes=[...form.querySelectorAll('input[type=checkbox]')], alone=boxes[0], gc=document.getElementById('guestCount');
+  boxes.forEach(b=>b.addEventListener('change',()=>{ if(b===alone&&b.checked) boxes.slice(1).forEach(x=>x.checked=false); else if(b!==alone&&b.checked) alone.checked=false; }));
+  gc.addEventListener('change',()=>{ if(gc.selectedIndex===1){ boxes.forEach(x=>x.checked=x===alone); } else if(alone.checked){ alone.checked=false; } });
+  let sent=false;
+  form.addEventListener('submit',e=>{
+    const name=form.elements['entry.790002394'], phone=form.elements['entry.359140589'];
+    [name,phone,gc].forEach(el=>el.classList.remove('bad'));
+    const miss=[];
+    if(!name.value.trim()){miss.push('your name');name.classList.add('bad');}
+    if(phone.value.replace(/\D/g,'').length<8){miss.push('a valid phone number');phone.classList.add('bad');}
+    if(!gc.value){miss.push('number of guests');gc.classList.add('bad');}
+    if(!boxes.some(b=>b.checked)) miss.push('who is coming with you');
+    if(miss.length){e.preventDefault();err.textContent='Please add '+(miss.length>1?miss.slice(0,-1).join(', ')+' and '+miss.at(-1):miss[0])+'.';err.hidden=false;return;}
+    err.hidden=true; sent=true; document.getElementById('sendBtn').disabled=true;
+    document.getElementById('thanksName').textContent=name.value.trim().split(/\s+/)[0];
+    setTimeout(showThanks,2500);
+  });
+  function showThanks(){ if(!sent||form.hidden) return; form.hidden=true; const t=document.getElementById('thanks'); t.hidden=false; t.focus({preventScroll:true}); }
+  sink.addEventListener('load',showThanks);
   if (TIME_TEXT){ const t=document.getElementById('timeLine'); t.textContent=TIME_TEXT; t.hidden=false; }
 
 
