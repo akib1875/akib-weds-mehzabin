@@ -312,7 +312,7 @@ body.locked{overflow:hidden}
 }
 </style>
 </head>
-<body class="locked">
+<body>
 
 <!-- shared SVG symbols -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -344,19 +344,6 @@ body.locked{overflow:hidden}
   </defs>
 </svg>
 
-<div class="cover" id="cover" role="dialog" aria-label="Open invitation">
-  <svg class="seal" aria-hidden="true"><use href="#star"/></svg>
-  <p class="ar" lang="ar">دعوة زفاف</p>
-  <p class="who">Akib &amp; Mehzabin</p>
-  <p class="when">11 · December · 2026</p>
-  <button class="open-btn" id="openBtn">Open Invitation</button>
-  <p class="snd" id="sndNote" hidden>Best enjoyed with sound on</p>
-</div>
-<audio id="bgm" src="nasheed.mp3" loop preload="auto"></audio>
-<button class="music" id="musicBtn" aria-label="Mute or play music">
-  <svg class="on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 9v6h4l5 4V5L8 9H4z" fill="currentColor"/><path d="M16 8.5a5 5 0 010 7M18.5 6a8.5 8.5 0 010 12"/></svg>
-  <svg class="off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 9v6h4l5 4V5L8 9H4z" fill="currentColor"/><path d="M17 9l5 6M22 9l-5 6"/></svg>
-</button>
 
 <div class="progress" aria-hidden="true"><i id="bar"></i></div>
 
@@ -557,18 +544,6 @@ const TIME_TEXT     = "12:00 PM · Friday";                       // e.g. "From 
   sink.addEventListener('load',showThanks);
   if (TIME_TEXT){ const t=document.getElementById('timeLine'); t.textContent=TIME_TEXT; t.hidden=false; }
 
-
-  // Cover + music
-  const cover=document.getElementById('cover'), audio=document.getElementById('bgm'), mb=document.getElementById('musicBtn');
-  let hasAudio=false;
-  audio.addEventListener('canplay',()=>{hasAudio=true;document.getElementById('sndNote').hidden=false;},{once:true});
-  function fadeTo(v,ms=1500){const s=audio.volume,t0=performance.now();(function f(t){const k=Math.min((t-t0)/ms,1);audio.volume=s+(v-s)*k;if(k<1)requestAnimationFrame(f);})(t0);}
-  document.getElementById('openBtn').addEventListener('click',()=>{
-    cover.classList.add('gone'); document.body.classList.remove('locked');
-    audio.volume=0; audio.play().then(()=>{hasAudio=true;mb.classList.add('show');fadeTo(.7);}).catch(()=>{});
-  });
-  mb.addEventListener('click',()=>{ if(audio.paused){audio.play();fadeTo(.7,600);mb.classList.remove('muted');} else {audio.pause();mb.classList.add('muted');} });
-  document.addEventListener('visibilitychange',()=>{ if(!hasAudio||mb.classList.contains('muted')) return; document.hidden?audio.pause():audio.play().catch(()=>{}); });
 
   // Arch frames — exact pixel paths so the arch head keeps its proportion at any size
   const NS='http://www.w3.org/2000/svg';
